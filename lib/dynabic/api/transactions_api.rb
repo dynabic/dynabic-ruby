@@ -24,13 +24,13 @@ class Transactions_api
     .sub('{' + 'format' + '}', escapeString(format))
     .sub('{' + 'pageNumber' + '}', escapeString(page_number))
     .sub('{' + 'pageSize' + '}', escapeString(page_size))
-    
-    
+
+
     # pull querystring keys from options
     queryopts = options.select do |key,value|
       query_param_keys.include? key
     end
-    
+
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
@@ -49,17 +49,17 @@ def self._get_transactions_for_subscription (subscription_id,format,page_number,
     options = { :subscription_id => subscription_id, :format => format, :page_number => page_number, :page_size => page_size}.merge(opts)
 
     #resource path
-    path = "/transactions/subscription/{subscriptionId}.{format}?pageNumber={pageNumber}&amp;pageSize={pageSize}".sub('{format}','json').sub('{' + 'subscriptionId' + '}', escapeString(subscription_id))
+    path = "/transactions/subscriptionId-{subscriptionId}?pageNumber={pageNumber}&pageSize={pageSize}".sub('{format}','json').sub('{' + 'subscriptionId' + '}', escapeString(subscription_id))
     .sub('{' + 'format' + '}', escapeString(format))
     .sub('{' + 'pageNumber' + '}', escapeString(page_number))
     .sub('{' + 'pageSize' + '}', escapeString(page_size))
-    
-    
+
+
     # pull querystring keys from options
     queryopts = options.select do |key,value|
       query_param_keys.include? key
     end
-    
+
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body
@@ -82,13 +82,13 @@ def self._get_transactions_for_customer (customer_id,format,page_number,page_siz
     .sub('{' + 'format' + '}', escapeString(format))
     .sub('{' + 'pageNumber' + '}', escapeString(page_number))
     .sub('{' + 'pageSize' + '}', escapeString(page_size))
-    
-    
+
+
     # pull querystring keys from options
     queryopts = options.select do |key,value|
       query_param_keys.include? key
     end
-    
+
     headers = nil
     post_body = nil
     response = Swagger::Request.new(:GET, path, {:params=>queryopts,:headers=>headers, :body=>post_body }).make.body

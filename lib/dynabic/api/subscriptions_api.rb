@@ -355,19 +355,17 @@ def self._add_charge_to_subscription (subscription_id,body,opts={})
     TransactionResponse.new(response)
   end
 
-def self._refund (subscription_id,body,transaction_id,opts={})
+def self._refund (subscription_id,body,opts={})
     query_param_keys = []
 
     # verify existence of params
     raise "subscription_id is required" if subscription_id.nil?
     raise "body is required" if body.nil?
-    raise "transaction_id is required" if transaction_id.nil?
     # set default values and merge with input
-    options = { :subscription_id => subscription_id, :body => body, :transaction_id => transaction_id}.merge(opts)
+    options = { :subscription_id => subscription_id, :body => body}.merge(opts)
 
     #resource path
-    path = "/subscriptions/refund/{subscriptionId}/{transactionId}".sub('{format}','json').sub('{' + 'subscriptionId' + '}', escapeString(subscription_id))
-    .sub('{' + 'transactionId' + '}', escapeString(transaction_id))
+    path = "/subscriptions/{subscriptionId}/refunds".sub('{format}','json').sub('{' + 'subscriptionId' + '}', escapeString(subscription_id))
 
 
     # pull querystring keys from options
@@ -518,7 +516,7 @@ def self._cancel_subscription (subscription_id,body,format,opts={})
     options = { :subscription_id => subscription_id, :body => body, :format => format}.merge(opts)
 
     #resource path
-    path = "/subscriptions/cancel/{subscriptionId}.{format}".sub('{format}','json').sub('{' + 'subscriptionId' + '}', escapeString(subscription_id))
+    path = "/subscriptions/{subscriptionId}/cancel".sub('{format}','json').sub('{' + 'subscriptionId' + '}', escapeString(subscription_id))
     .sub('{' + 'format' + '}', escapeString(format))
 
 
